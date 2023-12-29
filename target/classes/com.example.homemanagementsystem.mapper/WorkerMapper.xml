@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：最主要的作用就是绑定mapper.xml与对应那个Mapper接口的关系，要求接口名称为：全限定名 -->
+<mapper namespace="com.example.homemanagementsystem.com.mapper.WorkerMapper">
+    <resultMap id="WorkerMap" type="com.example.homemanagementsystem.com.vo.WorkerVo">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="address" property="address"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column=" briefIntroduction" property="briefIntroduction"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    <select id="selectHAll" resultType="com.example.homemanagementsystem.com.pojo.Worker">
+        select  * from worker
+    </select>
+
+    <select id="selectHById" resultType="com.example.homemanagementsystem.com.pojo.Worker">
+        select  * from worker where id = #{id}
+    </select>
+
+    <insert id="insertH">
+        insert into worker(username,phone,address) values (#{username},#{phone},#{address})
+    </insert>
+
+    <update id="updateH">
+        update worker set  username=#{username},address=#{address},phone=#{phone} where id=#{id}
+    </update>
+
+    <delete id="delDeptById" parameterType="Integer">
+        delete from worker where id=#{id}
+    </delete>
+    <delete id="delHById"></delete>
+
+
+    <!--    <select id="findDeptUser" resultMap="DeptMap">-->
+<!--        select d.id,d.dept_name,d.description,d.address,u.id,u.user_name,u.password,u.gender,u.birthday,u.deptID-->
+<!--        from  department d-->
+<!--                 left join user u-->
+<!--                           on d.id=u.deptID;-->
+<!--    </select>-->
+    <select id="findDeptUser2" resultType="com.example.homemanagementsystem.com.vo.WorkerVo"></select>
+    <select id="findHUser" resultType="com.example.homemanagementsystem.com.vo.WorkerVo"></select>
+</mapper>
